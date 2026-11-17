@@ -61,6 +61,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavDestination.Companion.hasRoute
@@ -390,6 +391,7 @@ private fun AuthenticatedShell(
     }
   }
 
+  val largeNavigationText = LocalConfiguration.current.fontScale > 1.3f
   BoxWithConstraints(modifier = Modifier.fillMaxSize()) {
     val useNavigationRail = maxWidth >= 600.dp
 
@@ -432,10 +434,11 @@ private fun AuthenticatedShell(
                 icon = {
                   Icon(
                     imageVector = if (selected) tab.selectedIcon else tab.unselectedIcon,
-                    contentDescription = null,
+                    contentDescription = if (largeNavigationText && !selected) stringResource(tab.labelRes) else null,
                   )
                 },
-                label = { Text(stringResource(tab.labelRes)) },
+                label = { Text(stringResource(tab.labelRes), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                alwaysShowLabel = !largeNavigationText,
                 modifier = Modifier.testTag(tab.tag),
               )
             }
@@ -464,10 +467,11 @@ private fun AuthenticatedShell(
                 icon = {
                   Icon(
                     imageVector = if (selected) tab.selectedIcon else tab.unselectedIcon,
-                    contentDescription = null,
+                    contentDescription = if (largeNavigationText && !selected) stringResource(tab.labelRes) else null,
                   )
                 },
-                label = { Text(stringResource(tab.labelRes)) },
+                label = { Text(stringResource(tab.labelRes), maxLines = 1, overflow = TextOverflow.Ellipsis) },
+                alwaysShowLabel = !largeNavigationText,
                 modifier = Modifier.testTag(tab.tag),
               )
             }

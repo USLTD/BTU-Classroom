@@ -1,56 +1,43 @@
-# Paused work handoff
+# Resumed work checkpoint
 
-Paused at the user's request on November 17, 2026 (Asia/Tbilisi). Preserve all current changes. Do not resume implementation or checks until the user asks.
+The user resumed work on November 17, 2026 (Asia/Tbilisi), including English/Georgian translations, working notifications, the BTU logo/colors, Material 3 Expressive, and improved UI/UX. This replaces the earlier paused handoff.
 
-## User constraints
+## Constraints
 
-- Implement the attached development plan using `__reference__/btu-classroom-mobile` and a modern modular Kotlin stack with dependency injection.
-- Use the android-cli skill. It was used for documentation, SDK installation, emulator creation and lifecycle work.
-- University portal access is strictly read-only. The user clarified that local implementation and builds are permitted. Do not submit forms, change programs or registrations, make payments, or alter university records.
-- The attached Library file and the reference source have not been edited.
+- University portal actions remain strictly read-only. Do not submit forms, alter programs or registrations, make payments, or mutate university records.
+- Local implementation, builds and checks are authorized. Android CLI has been used for documentation, SDK/emulator management, deployment, layout inspection and screen captures.
+- The attached Library plan and `__reference__/btu-classroom-mobile` remain unchanged.
+- Preserve other contributors' edits. Build/emulator work is serialized by the root agent to avoid memory pressure on the 16 GB machine.
 
-## Current implementation
+## Implementation
 
-- Hilt, Compose/Material 3, typed navigation, ViewModel/StateFlow, Room v2 with a v1-to-v2 migration, DataStore, OkHttp, Jsoup and Kotlin serialization.
-- On-demand GeckoView authentication and restricted WebExtension; optional Keystore-encrypted persistence, independent verification, guarded cleanup and account isolation.
-- Courses and linked grade/resource pages, search and semester filters, native timetable, examinations, program information, academic calendar, academic record, remaining-course status, statements and rating.
-- English/Georgian, light/dark themes, adaptive navigation, explicit cached/error states and absolute Tbilisi sync times.
-- Optional background synchronization, class reminders, calendar-app handoff, private authenticated document downloads and offline document access.
-- Sanitized parser fixtures, repository/migration/security/worker/UI tests, privacy and portal-contract documentation, and CI.
+Native courses/grades/resources, weekly timetable, exams, academic program/calendar/card, remaining-course status, statements and rating use Room-backed snapshots. The app includes Hilt, Compose, typed navigation, DataStore, optional Keystore session persistence, guarded on-demand GeckoView authentication, private downloads, optional background updates and selected-class reminders.
 
-The signed-in portal was inspected read-only. Its exam dates omit the year, its calendar publishes historical 2017-2018 dates, and the observed remaining-course response is empty. The app preserves these limits instead of inventing data. Academic mutations and populated remaining-course parsing remain gated.
+The UI uses actual Material 3 Expressive APIs, the official BTU logo and accessible BTU tonal colors. English/Georgian resources, known cached interface labels, browser routes and sign-in recovery messages are paired. Native data reads remain canonical Georgian until authenticated English academic contracts are verified. Official names, scores and unknown university text are preserved.
 
-## Verification state
+## Successful checkpoint
 
-- Earlier alpha debug assembly and lint passed. A 74-test run passed 73 tests; the remaining localized-settings context issue was then fixed, and all 14 focused UI tests passed.
-- The expanded source subsequently compiled its main debug and release Kotlin/Java code. The latest run reached `:app:assembleDebug` successfully.
-- The expanded implementation is **not fully verified**. The latest full run was stopped on request before completion.
-- Latest log: `build-verification-stable.log`. Earlier evidence: `build-ui-verification.log`, `build-verification-loopback.log`, `build-verification-expanded.log`.
-- Current debug APK: `app/build/outputs/apk/debug/app-debug.apk`; do not present it as fully validated.
+- 28 suites / 240 automated tests, zero failures, errors or skipped tests.
+- Debug APK and Android test APK assembled; debug lint passed with zero errors, 38 warnings and one hint.
+- Optimized unsigned release APK and app bundle assembled; release lint passed with the same error/warning counts.
+- Android 16/API 36 emulator: six notification tests, four private FileProvider tests and one navigation/language/theme/local-clearing journey passed.
+- Real Compose fixture captures cover native modules, light/dark modes, Georgian text, tablet widths and 200% course/settings text. Full-device phone/tablet captures are under `build/verification/`.
 
-## First issues to resolve on resume
+Evidence paths and commands are recorded in [VERIFICATION.md](VERIFICATION.md). These results precede the final navigation follow-up below.
 
-1. `PortalMigrationTest.kt` has Kotlin reified intersection-type inference errors at heterogeneous SQL binding arrays (reported at lines 63, 67, 75, 83, 87 and 91). Use explicitly typed binding arrays and rerun the migration test.
-2. `PortalScreensTest.kt:17` imports unresolved `onAllNodes`; align the import/call with the installed Compose test API.
-3. An earlier expanded run crashed inside lint's Kotlin FIR analysis of `BtuFileDownloader.kt` while source was changing. The final stable lint run was interrupted. Recheck with `LINT_PRINT_STACKTRACE=true`; diagnose any repeat without disabling lint.
-4. Rerun the full expanded tests, debug assembly/lint, instrumentation APK and optimized release assembly after fixes. Confirm the latest cleanup/download generation guards in the resulting build.
-5. Perform fresh visual review of every native screen and the emulator navigation journey. Old screenshots under `app/build/outputs/qa` are partial evidence, not a final pass.
+## Pending final follow-up
 
-## Local tools and restart
+The full-device 200% Georgian review exposed crowded bottom-navigation labels. `AppNavigation.kt` now shows the selected caption at enlarged sizes, keeps captions to one line, and supplies full spoken names for other navigation icons. The root agent is rerunning builds/tests/lint/release and regenerating the full-device navigation captures. Do not claim that this latest adjustment has passed until those results are recorded.
 
-- Use Java 25: the local Android Studio runtime is `%LOCALAPPDATA%\Programs\Android Studio\jbr`. The normal shell initially selected Java 22.
-- Compile SDK is Android 37.2, target SDK 37, minimum SDK 26. GeckoView is pinned to `160.0.20261104181552`.
-- MockWebServer tests must use `http://127.0.0.1:${server.port}` explicitly. This machine reverse-resolves the default local hostname to another name, which the strict origin guard correctly rejects.
-- Emulator `medium_phone` (Android 16/API 36) is stopped with a saved `default_boot` snapshot. Restart with `android emulator start medium_phone --headless`.
-- The machine has 16 GB RAM; running the emulator alongside compilation caused heavy paging. Build workers are limited to two. Prefer finishing tests before restarting the emulator.
-- All delegated agents had completed when paused. No new background implementation tasks were left active.
+The prior migration binding/import blockers and lint failures are resolved. Downloader tests needed two test-only host adaptations: AndroidX's `/` descendant check versus Windows separators, and real per-test `FileProvider.attachInfo` initialization to invalidate roots retained from earlier Robolectric directories. All 19 downloader tests now pass; the four Android provider tests exercise production restrictions without those host adaptations. No production file-sharing root was broadened.
 
-Suggested verification command after the user resumes and the test compilation issues are fixed:
+## Remaining external validation
 
-```powershell
-$env:JAVA_HOME = "$env:LOCALAPPDATA\Programs\Android Studio\jbr"
-$env:LINT_PRINT_STACKTRACE = 'true'
-.\gradlew.bat :app:assembleDebug :app:testDebugUnitTest :app:lintDebug :app:assembleDebugAndroidTest :app:assembleRelease --continue --console=plain
-```
+Live native university sign-in, interrupted authentication, browser-purge failure/timeout and remote logout were not exercised. No portal mutations were performed. Missing exam years, archived 2017–2018 calendar dates and the unsupported populated remaining-course contract remain deliberate limits. Release artifacts are unsigned; private signing and optional widgets remain outstanding.
 
-Production signing keys have not been created or configured. Live native authentication, remote logout and academic writes were not exercised against the university account.
+## Local tools
+
+- Java 25: `%LOCALAPPDATA%\Programs\Android Studio\jbr`; the default shell initially selected Java 22.
+- Compile SDK 37.2, target SDK 37, minimum SDK 26; Gradle 9.9.1.
+- Emulator `medium_phone`, serial `emulator-5554`, Android 16/API 36. Its current lifecycle state belongs to the root agent; do not start a competing build or emulator action.
+- MockWebServer tests use `http://127.0.0.1:${server.port}` explicitly to avoid the host's reverse-DNS name conflicting with strict origin checks.
