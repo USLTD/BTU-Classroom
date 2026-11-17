@@ -2,14 +2,14 @@
 
 This record maps the November 16, 2026 development plan to the November 17 implementation. Authenticated portal pages were inspected read-only and represented by sanitized structural fixtures. No university forms, program selections, payments, academic registration changes, or remote logout were exercised during verification. The attached Library file and reference source remain unchanged.
 
-The successful checkpoint includes 240 automated tests, 11 Android device tests, debug/release lint, and optimized unsigned APK/app-bundle builds. A later adjustment to enlarged-text navigation is awaiting a final build and device recheck. See [verification evidence](VERIFICATION.md) for the distinction; the newest source is not yet claimed fully rechecked.
+The final source passed 240 automated tests, 11 Android device tests, debug/release lint, and optimized unsigned APK/app-bundle builds. Complete phone/tablet and 200% Georgian navigation checks passed after the final label adjustment, followed by two independent visual reviews with no blocking findings. See [verification evidence](VERIFICATION.md) for commands, reports and artifact hashes. These checks do not replace the live-account and distribution gates below.
 
 ## Native implementation scope
 
 | Plan area | Implemented behavior | Evidence and remaining limits |
 | --- | --- | --- |
 | Phase 0: authentication | On-demand GeckoView, BTU-scoped WebExtension, cookie validation and independent native verification, expiry recovery, optional Keystore session storage, bounded browser purge and local cleanup, sanitized diagnostics | Automated URL, response, bridge, persistence and cleanup tests pass. Live native sign-in, interrupted sign-in, browser-purge failure/timeout and remote-logout scenarios remain untested against a university account |
-| Phase 1: foundation | Hilt, typed Compose navigation, ViewModel/StateFlow, Room, DataStore, restricted OkHttp, Jsoup, Kotlin serialization, English/Georgian settings | Debug and optimized release checkpoint builds pass. Genuine Material 3 Expressive APIs, BTU logo/colors, light/dark themes, and adaptive navigation are implemented; final enlarged-navigation recheck is pending |
+| Phase 1: foundation | Hilt, typed Compose navigation, ViewModel/StateFlow, Room, DataStore, restricted OkHttp, Jsoup, Kotlin serialization, English/Georgian settings | Debug and optimized release builds pass. Genuine Material 3 Expressive APIs, BTU logo/colors, light/dark themes, adaptive navigation and enlarged Georgian navigation have been checked |
 | Phase 2: selected courses | Courses/details, search and semester filters, validated linked score/resource pages, nullable scores, authoritative totals, private document access, explicit freshness and retained offline data | Parser, repository, cache, migration and download tests pass. Source values, course names and lecturer names remain as supplied by BTU |
 | Phase 3: timetable and examinations | Native weekly timetable, day/week/date navigation, room/group/lecturer metadata, selected future-class reminders, calendar-editor handoff, native exam table | Parser/UI/occurrence tests and real Android reminder checks pass. Exam dates omit a year, so no guessed exam calendar event or reminder is produced |
 | Phase 4: academic information | View-only program fields, original-year academic calendar, academic-card GPA/average/transcript, verified remaining-course empty state, historical rating | Parser/cache/UI tests pass. No inferred GPA formula, rewritten calendar years, program editing, or populated remaining-course parser |
@@ -38,11 +38,10 @@ GeckoView `160.0.20261104181552` requires compile SDK 37.2. Target SDK is 37, mi
 | Academic progress | Display BTU's GPA, average and transcript fields; no unverified university formula is calculated |
 | Portal mutations | Native academic access remains read-only. Registration stays in the official portal; no academic submission or retry is implemented |
 | Calendar export | `ACTION_INSERT` opens the user's event editor; the client does not write directly to calendars |
-| Distribution | Optimized unsigned artifacts exist at the checkpoint. Private signing and optional widgets remain outstanding |
+| Distribution | Final optimized unsigned artifacts are built and hashed. Private signing and optional widgets remain outstanding |
 
 ## Remaining release work
 
-- Complete the final enlarged-text navigation build/test/lint and device recheck.
 - Exercise live native sign-in, blocked sign-in recovery, interruption, browser-purge failure/timeout, account switching and remote-logout failure with an interactive account session.
 - Broaden Android/OEM testing, TalkBack, rotation/process recreation, and launch/performance/crash measurement. Existing enlarged-text and tablet captures do not replace those checks.
 - Review pinned dependency updates and configure the maintainer's private release signing key. No signing credentials belong in the repository.
