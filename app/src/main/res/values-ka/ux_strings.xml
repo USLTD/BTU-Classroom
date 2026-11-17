@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ux_btu_logo">BTU-ის ლოგო</string>
+    <string name="ux_entry_title">შენი საუნივერსიტეტო დღე ერთ სივრცეში.</string>
+    <string name="ux_entry_body">საგნები, განრიგი და აკადემიური სიახლეები — ქართულად ან ინგლისურად.</string>
+    <string name="ux_continue_btu">გაგრძელება BTU-ით</string>
+    <string name="ux_entry_privacy">შესვლა BTU-ის ოფიციალურ გვერდზე ხდება. პაროლი იქვე რჩება.</string>
+    <string name="ux_language">აპლიკაციის ენა</string>
+    <string name="ux_notification_description">ლექციის შეხსენებები შენახულ განრიგს იყენებს. შეფასებების შეტყობინებებს შენახული სესია და ფონური განახლებაც სჭირდება.</string>
+    <string name="ux_background_requires_login">ფონური აკადემიური განახლებისთვის შეინახე შესვლის სესია.</string>
+    <string name="ux_notification_blocked">Android-ის შეტყობინებები გამორთულია. შეხსენებებისა და შეფასებების მისაღებად ჩართე ისინი Android-ის პარამეტრებში.</string>
+    <string name="ux_notification_settings">Android-ის შეტყობინებების პარამეტრები</string>
+    <string name="ux_brand_theme_hint">ნაგულისხმევია BTU-ის ფერები. ფონის ფერები Android-ის თემას მიჰყვება.</string>
+    <string name="ux_auth_google_blocked">Google ამ ბრაუზერში შესვლას არ უშვებს. ანგარიშზე წვდომისთვის გახსენით BTU-ის ოფიციალური გვერდი მოწყობილობის ბრაუზერში.</string>
+    <string name="ux_auth_google_denied">Google-ით შესვლა გაუქმდა ან უარყოფილია. ხელახლა სცადეთ შესვლა.</string>
+    <string name="ux_auth_browser_cleanup">შესვლის ბრაუზერი ვერ გასუფთავდა. ხელახლა სცადეთ შესვლა.</string>
+    <string name="ux_auth_browser_unavailable">შესვლის ბრაუზერი ვერ ჩაირთო. სცადეთ თავიდან ან გახსენით BTU-ის ოფიციალური გვერდი მოწყობილობის ბრაუზერში.</string>
+    <string name="ux_auth_network_error">BTU-სთან დაკავშირება ვერ მოხერხდა. შეამოწმეთ ინტერნეტკავშირი და სცადეთ თავიდან.</string>
+    <string name="ux_auth_session_verification">BTU-მ შესვლა ვერ დაადასტურა. გასაგრძელებლად ხელახლა შედით.</string>
+    <string name="ux_auth_verification_blocked">BTU-ის უსაფრთხოების შემოწმება შესვლის დადასტურებას აფერხებს. მოგვიანებით სცადეთ ან გახსენით ოფიციალური გვერდი მოწყობილობის ბრაუზერში.</string>
+    <string name="ux_auth_unavailable">BTU დროებით მიუწვდომელია. სცადეთ მოგვიანებით.</string>
+    <string name="ux_auth_failure">შესვლა ვერ დასრულდა. სცადეთ თავიდან.</string>
+    <string name="ux_auth_stage_blocked">Google-ით შესვლა დაბლოკილია</string>
+    <string name="ux_auth_stage_failed">შესვლა ვერ დასრულდა</string>
+    <string name="ux_auth_stage_google">გააგრძელეთ Google-ით</string>
+    <string name="ux_auth_stage_finishing">BTU-ში შესვლა დასტურდება</string>
+    <string name="ux_auth_stage_signin">დაასრულეთ შესვლა BTU-ის ოფიციალურ გვერდზე</string>
+</resources>

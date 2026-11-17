@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ux_btu_logo">BTU logo</string>
+    <string name="ux_entry_title">Your university day, together.</string>
+    <string name="ux_entry_body">Keep courses, schedules and academic updates within reach — in English or Georgian.</string>
+    <string name="ux_continue_btu">Continue with BTU</string>
+    <string name="ux_entry_privacy">Sign in on BTU’s official page. Your password stays there.</string>
+    <string name="ux_language">App language</string>
+    <string name="ux_notification_description">Class reminders use your saved schedule. Grade alerts also need saved sign-in and background refresh.</string>
+    <string name="ux_background_requires_login">Save your sign-in to enable background academic updates.</string>
+    <string name="ux_notification_blocked">Android notifications are off. Enable them in Android settings to receive reminders and grade alerts.</string>
+    <string name="ux_notification_settings">Android notification settings</string>
+    <string name="ux_brand_theme_hint">BTU colors are the default. Wallpaper colors follow your Android theme.</string>
+    <string name="ux_auth_google_blocked">Google blocked this browser’s sign-in page. Open the official BTU page in your device browser to access your account.</string>
+    <string name="ux_auth_google_denied">Google sign-in was canceled or denied. Try signing in again.</string>
+    <string name="ux_auth_browser_cleanup">The sign-in browser could not be reset. Try signing in again.</string>
+    <string name="ux_auth_browser_unavailable">The sign-in browser could not start. Try again, or open the official BTU page in your device browser.</string>
+    <string name="ux_auth_network_error">Could not reach BTU. Check your connection and try again.</string>
+    <string name="ux_auth_session_verification">BTU could not confirm your sign-in. Sign in again to continue.</string>
+    <string name="ux_auth_verification_blocked">BTU’s security check is preventing verification. Wait and try again, or open the official page in your device browser.</string>
+    <string name="ux_auth_unavailable">BTU is temporarily unavailable. Try again later.</string>
+    <string name="ux_auth_failure">Sign-in could not be completed. Please try again.</string>
+    <string name="ux_auth_stage_blocked">Google sign-in blocked</string>
+    <string name="ux_auth_stage_failed">Sign-in could not finish</string>
+    <string name="ux_auth_stage_google">Continue with Google</string>
+    <string name="ux_auth_stage_finishing">Confirming BTU sign-in</string>
+    <string name="ux_auth_stage_signin">Complete sign-in on the official BTU page</string>
+</resources>

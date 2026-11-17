@@ -1,0 +1,16 @@
+<!doctype html>
+<html><body><div class="col-md-18">
+  <fieldset>
+    <legend>სასურველი ძირითადი/დამატებითი პროგრამები</legend>
+    <form action="https://classroom.btu.edu.ge/ge/student/me/saveProgram" id="prog_form" method="post">
+      <fieldset id="program_wrapper">
+        <legend>ძირითადი.</legend>
+        <div class="row form-group"><label class="col-sm-4 control-label">ფაკულტეტი</label><div class="col-sm-16"><input type="text" value="Sample faculty" disabled="disabled" class="form-control"></div></div>
+        <div class="row form-group"><label class="col-sm-4 control-label">პროგრამა</label><div class="col-sm-16"><input type="text" value="Sample degree" disabled="disabled" class="form-control"></div></div>
+      </fieldset>
+      <div id="minor_block"><fieldset><legend>დამატებითი</legend><select name="minor_custom_fac_id" id="fac_chooser"><option value="-1">მაინორის გაუქმება</option><option value="0" selected>აირჩიეთ ფაკულტეტი</option><option value="1">Unselected sample faculty</option></select><select name="minor_custom_prog_id" id="minor_programs"></select></fieldset></div>
+      <input type="hidden" name="csrf" value="fixture-hidden-value">
+      <input type="submit" id="save_program" value="შენახვა" class="btn btn-primary">
+    </form>
+  </fieldset>
+</div></body></html>

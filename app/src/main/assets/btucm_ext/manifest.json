@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "BTUCM Session Bridge",
+  "version": "1.2.0",
+  "description": "Observes BTU Classroom argus_session cookies on classroom.btu.edu.ge and relays lifecycle events via GeckoView native messaging.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "btucm-auth@btucm.local",
+      "strict_min_version": "102.0"
+    }
+  },
+  "permissions": [
+    "cookies",
+    "webNavigation",
+    "nativeMessaging",
+    "geckoViewAddons",
+    "https://classroom.btu.edu.ge/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  }
+}

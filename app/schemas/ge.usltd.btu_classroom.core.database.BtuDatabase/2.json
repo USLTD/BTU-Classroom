@@ -1,0 +1,446 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 2,
+    "identityHash": "02f65fb81498a423a7f6f914d9ec8b9d",
+    "entities": [
+      {
+        "tableName": "students",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`studentKey` TEXT NOT NULL, `displayName` TEXT, `programName` TEXT, `activeSemesterKey` TEXT, `updatedAtMillis` INTEGER NOT NULL, PRIMARY KEY(`studentKey`))",
+        "fields": [
+          {
+            "fieldPath": "studentKey",
+            "columnName": "studentKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "displayName",
+            "columnName": "displayName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "programName",
+            "columnName": "programName",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "activeSemesterKey",
+            "columnName": "activeSemesterKey",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAtMillis",
+            "columnName": "updatedAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "studentKey"
+          ]
+        }
+      },
+      {
+        "tableName": "semesters",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`semesterKey` TEXT NOT NULL, `rawSemesterKey` TEXT NOT NULL, `studentKey` TEXT NOT NULL, `title` TEXT NOT NULL, `sortOrder` INTEGER NOT NULL, `isCurrent` INTEGER NOT NULL, PRIMARY KEY(`semesterKey`))",
+        "fields": [
+          {
+            "fieldPath": "semesterKey",
+            "columnName": "semesterKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rawSemesterKey",
+            "columnName": "rawSemesterKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "studentKey",
+            "columnName": "studentKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sortOrder",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "isCurrent",
+            "columnName": "isCurrent",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "semesterKey"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_semesters_studentKey",
+            "unique": false,
+            "columnNames": [
+              "studentKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_semesters_studentKey` ON `${TABLE_NAME}` (`studentKey`)"
+          }
+        ]
+      },
+      {
+        "tableName": "courses",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`courseKey` TEXT NOT NULL, `courseId` TEXT NOT NULL, `studentKey` TEXT NOT NULL, `semesterKey` TEXT NOT NULL, `semesterName` TEXT NOT NULL, `code` TEXT NOT NULL, `title` TEXT NOT NULL, `credits` REAL, `minCredit` REAL, `lecturer` TEXT, `syllabusSummary` TEXT, `detailPath` TEXT, `resourcesJson` TEXT, `detailSyncedAtMillis` INTEGER, `detailStatus` TEXT, PRIMARY KEY(`courseKey`))",
+        "fields": [
+          {
+            "fieldPath": "courseKey",
+            "columnName": "courseKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "courseId",
+            "columnName": "courseId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "studentKey",
+            "columnName": "studentKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "semesterKey",
+            "columnName": "semesterKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "semesterName",
+            "columnName": "semesterName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "code",
+            "columnName": "code",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "title",
+            "columnName": "title",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "credits",
+            "columnName": "credits",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "minCredit",
+            "columnName": "minCredit",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "lecturer",
+            "columnName": "lecturer",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "syllabusSummary",
+            "columnName": "syllabusSummary",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "detailPath",
+            "columnName": "detailPath",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "resourcesJson",
+            "columnName": "resourcesJson",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "detailSyncedAtMillis",
+            "columnName": "detailSyncedAtMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "detailStatus",
+            "columnName": "detailStatus",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "courseKey"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_courses_studentKey_semesterKey",
+            "unique": false,
+            "columnNames": [
+              "studentKey",
+              "semesterKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_courses_studentKey_semesterKey` ON `${TABLE_NAME}` (`studentKey`, `semesterKey`)"
+          }
+        ]
+      },
+      {
+        "tableName": "enrollments",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`enrollmentKey` TEXT NOT NULL, `studentKey` TEXT NOT NULL, `semesterKey` TEXT NOT NULL, `courseId` TEXT NOT NULL, `totalScore` REAL, `statusLabel` TEXT, `updatedAtMillis` INTEGER NOT NULL, PRIMARY KEY(`enrollmentKey`))",
+        "fields": [
+          {
+            "fieldPath": "enrollmentKey",
+            "columnName": "enrollmentKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "studentKey",
+            "columnName": "studentKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "semesterKey",
+            "columnName": "semesterKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "courseId",
+            "columnName": "courseId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalScore",
+            "columnName": "totalScore",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "statusLabel",
+            "columnName": "statusLabel",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "updatedAtMillis",
+            "columnName": "updatedAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "enrollmentKey"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_enrollments_studentKey_semesterKey",
+            "unique": false,
+            "columnNames": [
+              "studentKey",
+              "semesterKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_enrollments_studentKey_semesterKey` ON `${TABLE_NAME}` (`studentKey`, `semesterKey`)"
+          }
+        ]
+      },
+      {
+        "tableName": "grades",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`gradeKey` TEXT NOT NULL, `courseKey` TEXT NOT NULL, `studentKey` TEXT NOT NULL, `semesterKey` TEXT NOT NULL, `courseId` TEXT NOT NULL, `categoryName` TEXT NOT NULL, `score` REAL, `maxScore` REAL, `notes` TEXT, `sortOrder` INTEGER NOT NULL, PRIMARY KEY(`gradeKey`))",
+        "fields": [
+          {
+            "fieldPath": "gradeKey",
+            "columnName": "gradeKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "courseKey",
+            "columnName": "courseKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "studentKey",
+            "columnName": "studentKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "semesterKey",
+            "columnName": "semesterKey",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "courseId",
+            "columnName": "courseId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "categoryName",
+            "columnName": "categoryName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "score",
+            "columnName": "score",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "maxScore",
+            "columnName": "maxScore",
+            "affinity": "REAL"
+          },
+          {
+            "fieldPath": "notes",
+            "columnName": "notes",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "sortOrder",
+            "columnName": "sortOrder",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "gradeKey"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_grades_courseKey",
+            "unique": false,
+            "columnNames": [
+              "courseKey"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_grades_courseKey` ON `${TABLE_NAME}` (`courseKey`)"
+          }
+        ]
+      },
+      {
+        "tableName": "sync_metadata",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`moduleId` TEXT NOT NULL, `lastAttemptAtMillis` INTEGER NOT NULL, `lastSuccessAtMillis` INTEGER, `outcomeStatus` TEXT NOT NULL, `message` TEXT, PRIMARY KEY(`moduleId`))",
+        "fields": [
+          {
+            "fieldPath": "moduleId",
+            "columnName": "moduleId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastAttemptAtMillis",
+            "columnName": "lastAttemptAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSuccessAtMillis",
+            "columnName": "lastSuccessAtMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "outcomeStatus",
+            "columnName": "outcomeStatus",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "message",
+            "columnName": "message",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "moduleId"
+          ]
+        }
+      },
+      {
+        "tableName": "portal_snapshots",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`moduleId` TEXT NOT NULL, `payloadJson` TEXT, `lastSuccessAtMillis` INTEGER, `lastAttemptAtMillis` INTEGER NOT NULL, `status` TEXT NOT NULL, `message` TEXT, PRIMARY KEY(`moduleId`))",
+        "fields": [
+          {
+            "fieldPath": "moduleId",
+            "columnName": "moduleId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "payloadJson",
+            "columnName": "payloadJson",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "lastSuccessAtMillis",
+            "columnName": "lastSuccessAtMillis",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "lastAttemptAtMillis",
+            "columnName": "lastAttemptAtMillis",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "message",
+            "columnName": "message",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "moduleId"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '02f65fb81498a423a7f6f914d9ec8b9d')"
+    ]
+  }
+}

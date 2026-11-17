@@ -1,0 +1,8 @@
+<!doctype html>
+<html><body><div class="col-md-18"><div id="calendar"></div></div>
+<script>
+$(function() {
+  var events = [{"color":"#b94a48","start":"2017-01-01","title":"Sample [holiday]"},{"color":"#b94a48","start":"2018-04-06","end":"2018-04-09","title":"Sample \"break\""}];
+  $('#calendar').fullCalendar({events: events, firstDay: 1});
+});
+</script></body></html>
